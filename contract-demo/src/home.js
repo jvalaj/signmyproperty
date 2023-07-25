@@ -1,3 +1,4 @@
+import Form from "./components/form"
 import ContractPdf from "./components/pdf"
 
 
