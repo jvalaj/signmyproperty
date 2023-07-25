@@ -1,10 +1,11 @@
-import logo from './logo.svg';
+
 import './App.css';
-import ContractPdf from "./components/pdf.js";
+
+import Home from './home';
 function App() {
   return (
     <div>
-      <ContractPdf />
+      <Home />
     </div>
   );
 }
