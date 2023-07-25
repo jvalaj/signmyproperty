@@ -11,13 +11,13 @@ const Form = () => {
 
     return (
         <div>
-            <section className="bg-white">
+            <section className="bg-white border h-screen border-gray-300">
                 <div className=" flex flex-col items-center justify-center px-6 py-8 mx-auto ">
 
                     <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-white border-gray-300">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 className="text-xl block text-center font-bold leading-tight tracking-tight md:text-2xl ">
-                                Create an Account
+                                Fill a Contract
                             </h1>
                             <form className="space-y-4 md:space-y-6" >
                                 <div>
@@ -53,7 +53,7 @@ const Form = () => {
                                         placeholder="+1 234567890"
                                         required />
                                 </div>
-                                <div>
+                                {/* <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-">Address</label>
                                     <input value={address}
                                         onChange={(e) => setAddress(e.target.value)}
@@ -85,12 +85,7 @@ const Form = () => {
                                         placeholder="••••••••"
                                         className=" border  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-300 border-gray-600 placeholder-gray-400 text- "
                                         required />
-                                </div>
-
-
-
-                                <button type="submit" className="w-full mt-4 text- bg-white hover:bg-gray-300 transition shadow-xl font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-gray-400">Download Pdf</button>
-
+                                </div> */}
                             </form>
                         </div>
                     </div>
