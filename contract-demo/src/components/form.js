@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
-
+import { useForm } from "../context/formData.js"
 const Form = () => {
 
+    const [name, setName,
+        email, setEmail,
+        password, setPassword,
+        phone, setPhone,
+        address, setAddress,
+        answer, setAnswer] = useForm()
 
     return (
         <div>

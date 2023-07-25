@@ -1,4 +1,4 @@
-import { useState, useContext, createContext, useEffect } from "react";
+import { useState, useContext, createContext } from "react";
 
 const FormContext = createContext();
 const FormProvider = ({ children }) => {
@@ -10,7 +10,15 @@ const FormProvider = ({ children }) => {
     const [answer, setAnswer] = useState("");
 
     return (
-        <FormContext.Provider value={[name, email, password, phone, address, answer]}>
+        <FormContext.Provider
+            value={
+                [name, setName,
+                    email, setEmail,
+                    password, setPassword,
+                    phone, setPhone,
+                    address, setAddress,
+                    answer, setAnswer]}>
+
             {children}
         </FormContext.Provider>
     )

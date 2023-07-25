@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 const ContractPdf = () => {
     return (
         <div>
-            Hi
+            Hidsvd
 
         </div>
     )
