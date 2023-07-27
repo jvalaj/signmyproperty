@@ -171,7 +171,7 @@ const ContractPdf = () => {
                     <span className="font-semibold text-lg " >
                         &nbsp;
                         {email ?
-                            <span className="capitalize underline">
+                            <span className="underline">
                                 {email}
                             </span> :
                             "_________________"}
