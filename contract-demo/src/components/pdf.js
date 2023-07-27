@@ -26,38 +26,22 @@ const ContractPdf = () => {
         });
     };
 
-    const [excelData, setExcelData] = useState(null);
-    const [excelFile, setExcelFile] = useState(null);
+    const [data, setData] = useState(null);
 
     // handle File
     const handleFile = (e) => {
         let selectedFile = e.target.files[0];
-        if (selectedFile) {
-            let reader = new FileReader();
-            reader.readAsArrayBuffer(selectedFile);
-            reader.onload = (e) => {
-                setExcelFile(e.target.result);
-            }
-        }
-        else {
-            alert("no file selected")
-            console.log('plz select your file');
-        }
-    }
+        let reader = new FileReader();
 
-    // submit function
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (excelFile !== null) {
-            const workbook = XLSX.read(excelFile, { type: 'buffer' });
-            const worksheetName = workbook.SheetNames[0];
-            const worksheet = workbook.Sheets[worksheetName];
-            const data = XLSX.utils.sheet_to_json(worksheet);
-            setExcelData(data);
+        reader.readAsArrayBuffer(selectedFile);
+        reader.onload = (e) => {
+            const filedata = e.target.result;
+            const wb = XLSX.read(filedata, { type: 'buffer' });
+            const worksheetName = wb.SheetNames[0];
+            const worksheet = wb.Sheets[worksheetName];
+            const parseddata = XLSX.utils.sheet_to_json(worksheet);
+            setData(parseddata);
             console.log(data)
-        }
-        else {
-            setExcelData(null);
         }
     }
 
@@ -130,18 +114,32 @@ const ContractPdf = () => {
                                         onChange={handleFile}
                                         type="file"
 
-                                        required />
-
+                                        required /> <br />
+                                    <button className={data ? "bg-red-500 px-2 py-1 mt-2 rounded-lg text-white" : "hidden"} onClick={(e) => { e.target.files[0] = null }}>Cancel</button>
                                 </div>
 
-                                <button type="submit" onClick={handleSubmit} className="rounded-lg p-2 bg-gray-300">Upload </button>
+
                             </form>
                         </div>
                     </div>
+                    <div className="w-full text-center mt-2">
+                        <button className={name && email && phone ? "mx-auto p-2 rounded-lg w-[28rem] bg-green-500 text-white shadow-xl" : "hidden"} onClick={downloadPDF}>Download Now</button>
+                    </div>
+
                 </div>
             </section>
+
             <div className="bg-white w-full p-4 m-3 border border-gray-700" ref={pdfRef}>
 
+                <div>
+                    {data?.map((item) => (
+                        <div key={item?.Id}>
+                            {setName(item?.Name)}
+                            {setEmail(item?.Email)}
+                            {setPhone(item?.Phone)}
+                        </div>
+                    ))}
+                </div>
                 <img src={pic}
                     height={100}
                     width={100} />
@@ -154,7 +152,7 @@ const ContractPdf = () => {
                     <span className="font-semibold text-lg " >
                         &nbsp;
                         {name ?
-                            <span className="underline">
+                            <span className="capitalize underline">
                                 {name}
                             </span> :
                             "_________________"}
@@ -173,7 +171,7 @@ const ContractPdf = () => {
                     <span className="font-semibold text-lg " >
                         &nbsp;
                         {email ?
-                            <span className="underline">
+                            <span className="capitalize underline">
                                 {email}
                             </span> :
                             "_________________"}
@@ -228,7 +226,7 @@ const ContractPdf = () => {
                 </div>
 
             </div>
-            <button className="p-2 rounded-lg absolute top-2 bg-green-500 left-5" onClick={downloadPDF}>Download Now</button>
+
         </div>
 
     )
