@@ -5,6 +5,7 @@ import jsPDF from 'jspdf';
 import pic from "./pic.jpg"
 import stamp from "./stamp.avif"
 import sig from "./signature.jpg"
+import * as XLSX from 'xlsx';
 const ContractPdf = () => {
 
     const pdfRef = useRef()
@@ -24,6 +25,42 @@ const ContractPdf = () => {
             pdf.save('contract.pdf');
         });
     };
+
+    const [excelData, setExcelData] = useState(null);
+    const [excelFile, setExcelFile] = useState(null);
+
+    // handle File
+    const handleFile = (e) => {
+        let selectedFile = e.target.files[0];
+        if (selectedFile) {
+            let reader = new FileReader();
+            reader.readAsArrayBuffer(selectedFile);
+            reader.onload = (e) => {
+                setExcelFile(e.target.result);
+            }
+        }
+        else {
+            alert("no file selected")
+            console.log('plz select your file');
+        }
+    }
+
+    // submit function
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (excelFile !== null) {
+            const workbook = XLSX.read(excelFile, { type: 'buffer' });
+            const worksheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[worksheetName];
+            const data = XLSX.utils.sheet_to_json(worksheet);
+            setExcelData(data);
+            console.log(data)
+        }
+        else {
+            setExcelData(null);
+        }
+    }
+
     const [name, setName,
         email, setEmail,
         password, setPassword,
@@ -31,7 +68,7 @@ const ContractPdf = () => {
         address, setAddress,
         answer, setAnswer] = useForm()
     return (
-        <div className="flex flex-row h-screen w-screen">
+        <div className="flex flex-row w-screen">
             <section className="bg-white border w-full h-screen border-gray-300">
                 <div className=" flex flex-col items-center justify-center px-6 py-8 gap-4 mx-auto ">
 
@@ -88,24 +125,22 @@ const ContractPdf = () => {
                             </h1>
                             <form className="space-y-4 md:space-y-6" >
                                 <div>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium ">Name</label>
-                                    <input value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        type=""
-                                        name=""
-                                        id=""
-                                        className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-300 border border-gray-600 placeholder-gray-400 text- "
-                                        placeholder="John Smith"
+
+                                    <input
+                                        onChange={handleFile}
+                                        type="file"
+
                                         required />
+
                                 </div>
 
-
+                                <button type="submit" onClick={handleSubmit} className="rounded-lg p-2 bg-gray-300">Upload </button>
                             </form>
                         </div>
                     </div>
                 </div>
             </section>
-            <div className="bg-white p-4 m-3 border border-gray-700" ref={pdfRef}>
+            <div className="bg-white w-full p-4 m-3 border border-gray-700" ref={pdfRef}>
 
                 <img src={pic}
                     height={100}
