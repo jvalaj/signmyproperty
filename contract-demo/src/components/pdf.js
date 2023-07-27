@@ -31,7 +31,80 @@ const ContractPdf = () => {
         address, setAddress,
         answer, setAnswer] = useForm()
     return (
-        <>
+        <div className="flex flex-row h-screen w-screen">
+            <section className="bg-white border w-full h-screen border-gray-300">
+                <div className=" flex flex-col items-center justify-center px-6 py-8 gap-4 mx-auto ">
+
+                    <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-white border-gray-300">
+                        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                            <h1 className="text-xl block text-center font-bold leading-tight tracking-tight md:text-2xl ">
+                                Fill a Contract
+                            </h1>
+                            <form className="space-y-4 md:space-y-6" >
+                                <div>
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium ">Name</label>
+                                    <input value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        type=""
+                                        name=""
+                                        id=""
+                                        className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-300 border border-gray-600 placeholder-gray-400 text- "
+                                        placeholder="John Smith"
+                                        required />
+                                </div>
+                                <div>
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-">Your email</label>
+                                    <input value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        type=""
+                                        name=""
+                                        id=""
+                                        className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-300 border border-gray-600 placeholder-gray-400 text- "
+                                        placeholder="name@company.com"
+                                        required />
+                                </div>
+                                <div>
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-">Phone Number</label>
+                                    <input value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}
+                                        type=""
+                                        name=""
+                                        id=""
+                                        className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-300 border border-gray-600 placeholder-gray-400 text- "
+                                        placeholder="+1 234567890"
+                                        required />
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        OR
+                    </div>
+                    <div className="w-full mt-4  rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-white border-gray-300">
+                        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                            <h1 className="text-xl block text-center font-bold leading-tight tracking-tight md:text-2xl ">
+                                Upload Excel Sheet
+                            </h1>
+                            <form className="space-y-4 md:space-y-6" >
+                                <div>
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium ">Name</label>
+                                    <input value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        type=""
+                                        name=""
+                                        id=""
+                                        className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-300 border border-gray-600 placeholder-gray-400 text- "
+                                        placeholder="John Smith"
+                                        required />
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <div className="bg-white p-4 m-3 border border-gray-700" ref={pdfRef}>
 
                 <img src={pic}
@@ -121,7 +194,7 @@ const ContractPdf = () => {
 
             </div>
             <button className="p-2 rounded-lg absolute top-2 bg-green-500 left-5" onClick={downloadPDF}>Download Now</button>
-        </>
+        </div>
 
     )
 }

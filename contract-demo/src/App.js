@@ -1,11 +1,12 @@
 
 import './App.css';
+import ContractPdf from './components/pdf';
 
-import Home from './home';
+
 function App() {
   return (
     <div>
-      <Home />
+      <ContractPdf />
     </div>
   );
 }
