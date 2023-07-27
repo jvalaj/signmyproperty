@@ -53,39 +53,7 @@ const Form = () => {
                                         placeholder="+1 234567890"
                                         required />
                                 </div>
-                                {/* <div>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-">Address</label>
-                                    <input value={address}
-                                        onChange={(e) => setAddress(e.target.value)}
-                                        type=""
-                                        name=""
-                                        id=""
-                                        className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-300 border border-gray-600 placeholder-gray-400 text- "
-                                        placeholder="ABC Street, City, State"
-                                        required />
-                                </div>
-                                <div>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-">What is your favourite sport?</label>
-                                    <input value={answer}
-                                        onChange={(e) => setAnswer(e.target.value)}
-                                        type=""
-                                        name=""
-                                        id=""
-                                        className=" sm:text-sm rounded-lg block w-full p-2.5 bg-gray-300 border border-gray-600 placeholder-gray-400 text- "
-                                        placeholder="Football etc."
-                                        required />
-                                </div>
-                                <div>
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-">Password</label>
-                                    <input value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        type=""
-                                        name=""
-                                        id=""
-                                        placeholder="••••••••"
-                                        className=" border  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-300 border-gray-600 placeholder-gray-400 text- "
-                                        required />
-                                </div> */}
+
                             </form>
                         </div>
                     </div>
