@@ -27,6 +27,7 @@ const ContractPdf = () => {
     };
 
     const [data, setData] = useState(null);
+    const [datafromexcel, setExcelData] = useState(null);
 
     // handle File
     const handleFile = (e) => {
@@ -40,17 +41,16 @@ const ContractPdf = () => {
             const worksheetName = wb.SheetNames[0];
             const worksheet = wb.Sheets[worksheetName];
             const parseddata = XLSX.utils.sheet_to_json(worksheet);
-            setData(parseddata);
+            console.log(parseddata)
+            setExcelData(parseddata);
             console.log(data)
         }
     }
 
     const [name, setName,
         email, setEmail,
-        password, setPassword,
         phone, setPhone,
-        address, setAddress,
-        answer, setAnswer] = useForm()
+    ] = useForm()
     return (
         <div className="flex flex-row w-screen">
             <section className="bg-white border w-full h-screen border-gray-300">
@@ -62,35 +62,21 @@ const ContractPdf = () => {
                             </h1>
 
                             <div>
-                                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg className="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 1 4 4 4-4" />
-                                </svg></button>
-                                {/* Dropdown menu */}
-                                <div id="dropdown" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                    <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                                        <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-                                        </li>
-                                    </ul>
-                                </div>
+
+                                <label for="dropdown">Choose your state:</label>
+                                <select id="dropdown" name="dropdown">
+                                    <option value="option1">Option 1</option>
+                                    <option value="option2">Option 2</option>
+                                    <option value="option3">Option 3</option>
+                                </select>
+
                             </div>
 
                         </div>
                     </div>
                     <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-white border-gray-300">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                            <h1 className="text-xl block text-center font-bold leading-tight tracking-tight md:text-2xl ">
-                                Fill a Contract
-                            </h1>
+
                             <form className="space-y-4 md:space-y-6" >
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium ">Name</label>
@@ -137,6 +123,8 @@ const ContractPdf = () => {
                             <h1 className="text-xl block text-center font-bold leading-tight tracking-tight md:text-2xl ">
                                 Upload Excel Sheet
                             </h1>
+                            <p>Please Note: Your excel file should have 2 columns. One with 3 rows labelled: Name, Email, Phone
+                            </p>
                             <form className="space-y-4 md:space-y-6" >
                                 <div>
 
@@ -159,6 +147,11 @@ const ContractPdf = () => {
                 </div>
             </section>
 
+
+
+
+
+
             <div className="bg-white w-full p-4 m-3 border border-gray-700" ref={pdfRef}>
 
                 <div>
@@ -170,10 +163,15 @@ const ContractPdf = () => {
                         </div>
                     ))}
                 </div>
-                <img src={pic}
-                    height={100}
-                    width={100} />
-                <h1 className="text-2xl"> To whomsoever it may concern</h1>
+
+                <p className="text-center font-bold border-black border-4 text-lg">Real Estate Purchase Agreement</p>
+
+                <div className="flex justify-between items-center">
+                    <h1 className="text">   <p>This Real Estate Purchase Agreement ("Agreement") is made and entered into as of this [date] by and between:</p></h1>
+                    <img src={pic}
+                        height={100}
+                        width={100} />
+                </div>
                 <p className="pr-4 mt-5">
                     <span className="font-bold">1.    &nbsp;</span>
 
@@ -244,6 +242,21 @@ const ContractPdf = () => {
 
                     a eleme
                     ntum metus viverra malesuada. Sed non tellus est. Morbi sed dui leo.</p>
+                <br /><hr /><br />
+                <h2>Terms and Conditions:</h2>
+                <ul>
+                    <li><strong>Purchase Price:</strong> The total purchase price for the property located at [Property Address] ("Property") shall be [Purchase Price], payable as follows: [Payment Terms].</li>
+                    <li><strong>Closing Date:</strong> The closing date for the transaction shall be [Closing Date], or at such other time as the Parties may mutually agree in writing.</li>
+                    <li><strong>Inspection Period:</strong> The Buyer shall have [Number] days from the date of this Agreement to conduct any inspections of the Property. The Buyer shall notify the Seller in writing of any objections or concerns within this period.</li>
+                    <li><strong>Contingencies:</strong> This Agreement is contingent upon the following conditions being satisfied by the Closing Date:
+                        <ul>
+                            <li>Buyer obtaining financing in the amount of [Financing Amount] on terms satisfactory to Buyer.</li>
+                            <li>Property passing all necessary inspections and appraisals to the satisfaction of Buyer.</li>
+                            <li>Seller providing clear and marketable title to the Property.</li>
+                        </ul>
+                    </li>
+                </ul>
+
                 <div className="flex  flex-row mt-5 mb-0 justify-between">
                     <img className="mt-3" src={stamp}
                         height={150}
@@ -254,6 +267,26 @@ const ContractPdf = () => {
                         width={150}
                     />
                 </div>
+
+
+
+
+
+                <p><strong>Seller:</strong> [Seller's Name], located at [Seller's Address]</p>
+                <p><strong>Buyer:</strong> [Buyer's Name], located at [Buyer's Address]</p>
+
+                <p>Hereinafter collectively referred to as "Parties" and individually as a "Party".</p>
+
+
+
+                <p>IN WITNESS WHEREOF, the Parties have executed this Agreement as of the day and year first above written.</p>
+
+                <p>__________________________</p>
+                <p>Seller's Signature</p>
+
+                <p>__________________________</p>
+                <p>Buyer's Signature</p>
+
 
             </div>
 
