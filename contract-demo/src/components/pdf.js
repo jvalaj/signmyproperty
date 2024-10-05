@@ -65,10 +65,33 @@ const ContractPdf = () => {
             <p className="text-sm text-red-600 text-center mb-2">
                 Disclaimer: This is a basic version of the project to test functionality. Custom fields can be added, and the application can be extended to a more advanced version with additional input fields.
             </p>
+            <marquee>
+                <div className="flex flex-row gap-[10rem]">
+                    <div className="flex justify-center flex-row bg-blue-600 w-1/5 p-2 rounded-lg">
+                        <img src="./logo.png" className="rounded-full" height={60} width={50} />
+                        <p className="text-lg ml-3 mt-2 text-white">  EstateReal</p>
+                    </div>
+
+                    <div className="flex justify-center flex-row bg-blue-600 w-1/5 p-2 rounded-lg">
+                        <img src="./logo.png" className="rounded-full" height={60} width={50} />
+                        <p className="text-lg ml-3 mt-2 text-white">  EstateReal</p>
+                    </div>
+
+                    <div className="flex justify-center flex-row bg-blue-600 w-1/5 p-2 rounded-lg">
+                        <img src="./logo.png" className="rounded-full" height={60} width={50} />
+                        <p className="text-lg ml-3 mt-2 text-white">  EstateReal</p>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </marquee>
             <div className="flex flex-row w-screen">
 
                 <section className="bg-white border w-full h-screen border-gray-300">
-
 
                     <div className=" flex flex-col items-center justify-center px-6 py-8 gap-4 mx-auto ">
 
